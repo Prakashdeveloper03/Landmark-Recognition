@@ -71,34 +71,36 @@ def main():
     if uploaded_file is not None:
         st.image(uploaded_file, use_column_width=True)
         with st.spinner("Predicting..."):
-            prediction = image_processing(
-                uploaded_file
-            )  # calls image_processing() to predict
-
-        # displays the predicted text
-        st.success(f"Predicted Landmark is: {prediction.capitalize()}")
-        try:
-            address, latitude, longitude = get_map(
-                prediction
-            )  # get location's address, latitude and longitude details
-            # shows the address of the location
-            with st.expander(
-                f"Address details of {prediction.capitalize()}", expanded=True
-            ):
-                st.text(address.replace(", ", ",\n"))
-            loc_dict = {"Latitude": latitude, "Longitude": longitude}
-            # shows the address of the location's latitude and longitude
-            with st.expander(
-                f"Latitude & Longitude of {prediction.capitalize()}", expanded=True
-            ):
-                st.json(loc_dict)
-            data = [[latitude, longitude]]
-            df = pd.DataFrame(data, columns=["lat", "lon"])
-            # displays the map of the location using latitude and longitude
-            with st.expander(f"{prediction.capitalize()} on the Map 🗺️"):
-                st.map(df)
-        except Exception as e:
-            st.warning("No address found!!")
+            try:
+                prediction = image_processing(
+                    uploaded_file
+                )  # calls image_processing() to predict
+                # displays the predicted text
+                st.success(f"Predicted Landmark is: {prediction.capitalize()}")
+                try:
+                    address, latitude, longitude = get_map(
+                        prediction
+                    )  # get location's address, latitude and longitude details
+                    # shows the address of the location
+                    with st.expander(
+                        f"Address details of {prediction.capitalize()}", expanded=True
+                    ):
+                        st.text(address.replace(", ", ",\n"))
+                    loc_dict = {"Latitude": latitude, "Longitude": longitude}
+                    # shows the address of the location's latitude and longitude
+                    with st.expander(
+                        f"Latitude & Longitude of {prediction.capitalize()}", expanded=True
+                    ):
+                        st.json(loc_dict)
+                    data = [[latitude, longitude]]
+                    df = pd.DataFrame(data, columns=["lat", "lon"])
+                    # displays the map of the location using latitude and longitude
+                    with st.expander(f"{prediction.capitalize()} on the Map 🗺️"):
+                        st.map(df)
+                except Exception as e:
+                    st.warning("No address found!!")
+            except Exception as e:
+                st.warning("Invalid file!!")
 
 
 if __name__ == "__main__":
