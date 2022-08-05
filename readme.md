@@ -8,7 +8,7 @@
 ![terminal](https://img.shields.io/badge/Windows%20Terminal-4D4D4D?&logo=Windows%20terminal&logoColor=white)
 ![vscode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?&logo=visual%20studio%20code&logoColor=white)
 
-Landmark Recognition App is used to predict landmark from user given image. it provides information about lankmark's full address, latitude & longitude and plot the predicted landmark on the map. The trained model [`landmarks_classifier_asia_V1/1`](https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_asia_V1/1) is taken from the Tensorflow-Hub. There are total `98961` classes supported, in which Asia's most of the famous Landmark is covered.
+Landmark Recognition App is used to predict landmark from user given image. it gives information about lankmark's full address, latitude & longitude and plot the predicted landmark on the map. The trained model [`landmarks_classifier_asia_V1/1`](https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_asia_V1/1) is taken from the Tensorflow-Hub. There are total `98961` classes supported, in which Asia's most of the famous Landmark is covered.
 
 ## Installation
 Open command prompt and create new environment
@@ -31,7 +31,7 @@ Then install all requirement packages for the app
 ```
 pip install -r requirements.txt
 ```
-Then, Run the `translator.py` script
+Then, Run the `app.py` script
 ```
 streamlit run app.py
 ```
